@@ -12,13 +12,33 @@ export default class ImageGallery extends Component {
 
   async componentDidUpdate(prevProps, prevState) {
     if (prevProps !== this.props) {
-      this.setState({ searchInput: this.props.searchInput });
+      this.setState({
+        searchInput: this.props.searchInput,
+      });
     }
+
     if (prevState.searchInput !== this.state.searchInput) {
-      const response = await api.fetchImages(this.state.searchInput);
+      const response = await api.fetchImages(this.state.searchInput, 1);
 
       try {
-        this.setState({ images: response.data.hits });
+        this.setState({
+          images: response.data.hits,
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+
+    if (prevProps.page !== this.props.page) {
+      const response = await api.fetchImages(
+        this.state.searchInput,
+        this.props.page
+      );
+
+      try {
+        this.setState(prevState => ({
+          images: [...prevState.images, ...response.data.hits],
+        }));
       } catch (error) {
         console.log(error.message);
       }
