@@ -19,11 +19,25 @@ export default class ImageGallery extends Component {
 
       try {
         this.setState({ images: response.data.hits });
-      } catch (error) {}
+      } catch (error) {
+        console.log(error.message);
+      }
     }
   }
 
   render() {
-    return <ul className={css.ImageGallery}></ul>;
+    return (
+      <ul className={css.ImageGallery}>
+        {this.state.images.map(({ id, webformatURL, largeImageURL }) => {
+          return (
+            <ImageGalleryItem
+              key={id}
+              smallImg={webformatURL}
+              bigImg={largeImageURL}
+            />
+          );
+        })}
+      </ul>
+    );
   }
 }
