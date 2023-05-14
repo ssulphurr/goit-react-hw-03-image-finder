@@ -3,9 +3,28 @@ import { BsSearch } from 'react-icons/bs';
 import css from './Searchbar.module.css';
 
 export default class SearchForm extends Component {
+  state = {
+    searchInput: '',
+  };
+
+  handleInput = e => {
+    this.setState({ searchInput: e.target.value });
+  };
+
+  onSubmit = e => {
+    e.preventDefault();
+    this.props.onSubmit(this.state.searchInput);
+
+    this.reset();
+  };
+
+  reset = () => {
+    this.setState({ searchInput: '' });
+  };
+
   render() {
     return (
-      <header className={css.Searchbar}>
+      <header className={css.Searchbar} onSubmit={this.onSubmit}>
         <form className={css.SearchForm}>
           <button type="submit" className={css.SearchForm__button}>
             <span className={css.SearchForm__button__label}></span>
@@ -18,6 +37,8 @@ export default class SearchForm extends Component {
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
+            onChange={this.handleInput}
+            value={this.state.searchInput}
           />
         </form>
       </header>
