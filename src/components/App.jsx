@@ -18,11 +18,16 @@ export class App extends Component {
     this.setState(prevState => ({ page: prevState.page + 1 }));
   };
 
+  resetPage = () => {
+    this.setState({ page: 1 });
+  };
+
   render() {
     return (
       <div className={css.App}>
         <SearchForm onSubmit={this.handleFormSubmit} />
         <ImageGallery
+          resetPage={this.resetPage}
           searchInput={this.state.searchInput}
           page={this.state.page}
         />

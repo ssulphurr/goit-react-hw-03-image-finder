@@ -18,7 +18,11 @@ export default class ImageGallery extends Component {
     }
 
     if (prevState.searchInput !== this.state.searchInput) {
-      const response = await api.fetchImages(this.state.searchInput, 1);
+      this.props.resetPage();
+      const response = await api.fetchImages(
+        this.state.searchInput,
+        this.props.page
+      );
 
       try {
         this.setState({
