@@ -67,21 +67,19 @@ export default class ImageGallery extends Component {
     const { searchInput, images, isLoading, page } = this.state;
     return (
       <>
-        {images !== [] && (
-          <ul className={css.ImageGallery}>
-            {images.map(({ id, webformatURL, largeImageURL }) => {
-              return (
-                <ImageGalleryItem
-                  key={id}
-                  smallImg={webformatURL}
-                  bigImg={largeImageURL}
-                />
-              );
-            })}
-          </ul>
-        )}
+        <ul className={css.ImageGallery}>
+          {images.map(({ id, webformatURL, largeImageURL }) => {
+            return (
+              <ImageGalleryItem
+                key={id}
+                smallImg={webformatURL}
+                bigImg={largeImageURL}
+              />
+            );
+          })}
+        </ul>
         {isLoading ? <Audio /> : null}
-        {searchInput ? <Button onClick={this.increasePage} /> : null}
+        {images.length > 0 && <Button onClick={this.increasePage} />}
       </>
     );
   }
