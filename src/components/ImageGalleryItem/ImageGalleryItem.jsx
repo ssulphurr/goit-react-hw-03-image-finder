@@ -18,7 +18,9 @@ export default class ImageGalleryItem extends Component {
     return (
       <li className={css.ImageGalleryItem} onClick={this.toggleModal}>
         <img src={smallImg} alt="" className={css.ImageGalleryItem__image} />
-        {this.state.showModal && <Modal bigImg={bigImg} />}
+        {this.state.showModal && (
+          <Modal bigImg={bigImg} onClose={this.toggleModal} />
+        )}
       </li>
     );
   }
