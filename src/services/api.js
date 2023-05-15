@@ -7,6 +7,8 @@ const fetchImages = async (searchInput, page) => {
   return response;
 };
 
-export default {
+const api = {
   fetchImages,
 };
+
+export default api;

@@ -64,7 +64,7 @@ export default class ImageGallery extends Component {
   };
 
   render() {
-    const { searchInput, images, isLoading, page } = this.state;
+    const { images, isLoading } = this.state;
     return (
       <>
         <ul className={css.ImageGallery}>
