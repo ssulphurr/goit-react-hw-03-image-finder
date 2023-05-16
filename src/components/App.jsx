@@ -5,6 +5,7 @@ import api from 'services/api';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Button from 'components/Button/Buttom';
 import Loader from './Loader/Loader';
+import PropTypes from 'prop-types';
 
 export class App extends Component {
   state = {
@@ -81,3 +82,7 @@ export class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  searchInput: PropTypes.string,
+};
