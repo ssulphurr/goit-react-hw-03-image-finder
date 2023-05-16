@@ -14,10 +14,15 @@ export default class ImageGalleryItem extends Component {
   };
 
   render() {
-    const { smallImg, bigImg } = this.props;
+    const { smallImg, bigImg, tags } = this.props;
+
     return (
       <li className={css.ImageGalleryItem} onClick={this.toggleModal}>
-        <img src={smallImg} alt="" className={css.ImageGalleryItem__image} />
+        <img
+          src={smallImg}
+          alt={tags}
+          className={css.ImageGalleryItem__image}
+        />
         {this.state.showModal && (
           <Modal bigImg={bigImg} onClose={this.toggleModal} />
         )}

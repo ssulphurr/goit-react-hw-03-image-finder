@@ -13,8 +13,12 @@ export default class SearchForm extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state.searchInput);
 
+    if (this.state.searchInput.trim() === '') {
+      this.reset();
+      return alert('Fill the form to find something');
+    }
+    this.props.onSubmit(this.state.searchInput);
     this.reset();
   };
 
